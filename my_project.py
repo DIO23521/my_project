@@ -1,11 +1,46 @@
 # 1. create a counter that counts custom amount(✅) in custom intervals(✅) and then print something may be random
 #                                                                                                      from list(✅)
-# add input for question(⌛)
+# add input for question(✅)
 # do it repeatable  and closable(⌛)
 
 import time
 import random
 from tarot_list import *
+
+
+
+def question_input():
+
+    question = input("Enter your question: ")
+
+    while True:
+#                   do question completely alphabetical if used only " " or "?"
+#            (and if temp question is completely alphabetical - push question with " " and "?" to (else))
+#                                            ⬇️
+        temporary_question = question.replace(" ", "").replace("?", "")
+
+        if len(question) > 20:
+            print("Your ques cant be more than 20 characters")
+            question = input("Enter your question: ")         # new assign every time because
+                                                              # I need new answer every loop
+        elif question.count("?") != 1:
+            print("Your question must contain only one '?'")
+            question = input("Enter your question: ")
+#
+#      Check whether the temp_question is completely alphabetical
+#                         ⬇️
+        elif not temporary_question.isalpha():
+            print("You cant use signs except spaces and question mark")
+            question = input("Enter your question: ")
+
+        else:
+            print(f"Your question is '{question}'")
+            break
+
+    return question    # return allows you to pass the final, validated value of a variable
+                    # from the internal environment of a function to the outside, where you called the function.
+
+
 
 
 def add_num():
@@ -41,9 +76,11 @@ def custom_time():
     return time_for_sleep
 
 
-#
+
 
 def main():
+
+    your_question = question_input()
     added_num = add_num()
     amount_time = custom_time()
 
@@ -51,6 +88,8 @@ def main():
         time.sleep(amount_time)
         print(num)
     print(random.choice(tarot_cards))
+    print(f"Your question was '{your_question}'")
+
 
 
 if __name__ == '__main__':
