@@ -1,7 +1,7 @@
 # 1. create a counter that counts custom amount(✅) in custom intervals(✅) and then print something may be random
 #                                                                                                      from list(✅)
 # add input for question(✅)
-# do it repeatable  and closable(⌛)
+# do it repeatable  and closable(✅)
 
 import time
 import random
@@ -19,8 +19,8 @@ def question_input():
 #                                            ⬇️
         temporary_question = question.replace(" ", "").replace("?", "")
 
-        if len(question) > 20:
-            print("Your ques cant be more than 20 characters")
+        if len(question) > 40:
+            print("Your ques cant be more than 40 characters")
             question = input("Enter your question: ")         # new assign every time because
                                                               # I need new answer every loop
         elif question.count("?") != 1:
@@ -79,16 +79,35 @@ def custom_time():
 
 
 def main():
+    while True:
 
-    your_question = question_input()
-    added_num = add_num()
-    amount_time = custom_time()
+        your_question = question_input()
+        added_num = add_num()
+        amount_time = custom_time()
 
-    for num in range(added_num):
-        time.sleep(amount_time)
-        print(num)
-    print(random.choice(tarot_cards))
-    print(f"Your question was '{your_question}'")
+        for num in range(added_num):
+            time.sleep(amount_time)
+            print(num)
+        print(random.choice(tarot_cards))
+        print(f"Your question was '{your_question}'")
+
+        while True:
+
+            continue_game = input("Do you want to play again? (y/n): ").lower()
+
+            if continue_game == "y":
+                break
+            elif continue_game == "n":
+                break
+            else:
+                print("Invalid input")
+                continue
+
+        if continue_game == "n":
+            break
+
+    print("Thanks for playing!😊")
+
 
 
 
